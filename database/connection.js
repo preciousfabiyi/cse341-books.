@@ -1,5 +1,6 @@
 import { MongoClient } from "mongodb";
 
+let client;
 let database;
 
 export async function connectToDatabase() {
@@ -7,11 +8,20 @@ export async function connectToDatabase() {
     return database;
   }
 
-  const client = new MongoClient(process.env.MONGODB_URI);
+  const connectionString = process.env.MONGODB_URI;
+  const databaseName = process.env.MONGODB_DB_NAME;
+
+  if (!connectionString || !databaseName) {
+    throw new Error(
+      "MONGODB_URI and MONGODB_DB_NAME must be configured."
+    );
+  }
+
+  client = new MongoClient(connectionString);
 
   await client.connect();
 
-  database = client.db("cse341-books-db");
+  database = client.db(databaseName);
 
   console.log("Successfully connected to MongoDB!");
 
