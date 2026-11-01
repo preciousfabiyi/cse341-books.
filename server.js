@@ -1,12 +1,13 @@
 import express from "express";
 import { connectToDatabase } from "./database/connection.js";
-import booksRouter from "./routes/books.js";
+import router from "./src/router.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Books routes
-app.use("/books", booksRouter);
+
+// Register application routes
+app.use(router);
 
 // Home route
 app.get("/", (req, res) => {
