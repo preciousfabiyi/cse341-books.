@@ -5,3 +5,9 @@ export async function getAllBooks() {
 
   return await db.collection("books").find({}).toArray();
 }
+
+export async function getBookById(id) {
+  const db = await connectToDatabase();
+
+  return await db.collection("books").findOne({ id });
+}
