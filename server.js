@@ -5,6 +5,8 @@ import router from "./src/router.js";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Middleware to read JSON request bodies
+app.use(express.json());
 
 // Register application routes
 app.use(router);
