@@ -1,10 +1,17 @@
 import express from "express";
 import { connectToDatabase } from "./database/connection.js";
 import router from "./src/router.js";
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./swagger.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+
+app.use(express.json());
+
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // Middleware to read JSON request bodies
 app.use(express.json());
 
