@@ -11,6 +11,9 @@ import {
 import {
   getBooksHandler,
   getBookByIdHandler,
+  createBookHandler,
+  updateBookHandler,
+  deleteBookHandler,
 } from "./controllers/books.js";
 
 const router = express.Router();
@@ -35,5 +38,14 @@ router.put("/authors/:id", updateAuthorHandler);
 
 // DELETE /authors/:id - Delete an author
 router.delete("/authors/:id", deleteAuthorHandler);
+
+// POST /books - Create a book
+router.post("/books", createBookHandler);
+
+// PUT /books/:id - Update a book
+router.put("/books/:id", updateBookHandler);
+
+// DELETE /books/:id - Delete a book
+router.delete("/books/:id", deleteBookHandler);
 
 export default router;
